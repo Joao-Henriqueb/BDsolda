@@ -3,8 +3,12 @@ const { initializeApp } = require('firebase-admin/app');
 const app = express();
 
 var admin = require('firebase-admin');
-
+const serviceAccount = JSON.parse(
+  process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
+);
+/*
 var serviceAccount = require('./serviceAccountKey.json');
+*/
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -52,7 +56,7 @@ app.get('/artigosPost/:id', (req, res) => {
     });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log('SERVER RUNNING PORT 5000');
 });

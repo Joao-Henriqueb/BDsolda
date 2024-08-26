@@ -16,6 +16,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const corsOptions = {
   origin: 'http://127.0.0.1:5501',
+  methods: 'GET,POST',
   optionsSuccessStatus: 200,
 };
 //deploy e esse

@@ -14,7 +14,10 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 firebase.initializeApp(firebaseConfig);
-
+const corsOptions = {
+  origin: 'http://127.0.0.1:5501',
+  optionsSuccessStatus: 200,
+};
 //deploy e esse
 const serviceAccount = JSON.parse(
   process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
@@ -27,11 +30,8 @@ const serviceAccount = require('./serviceAccountKey.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
-app.use(
-  cors({
-    origin: 'http://127.0.0.1:5501',
-  }),
-);
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.get('/artigos', (req, res) => {

@@ -27,6 +27,11 @@ const serviceAccount = require('./serviceAccountKey.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
+app.use(
+  cors({
+    origin: 'http://127.0.0.1:5501',
+  }),
+);
 app.use(express.json());
 
 app.get('/artigos', (req, res) => {

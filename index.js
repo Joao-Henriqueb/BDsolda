@@ -1,18 +1,33 @@
 const express = require('express');
-const { initializeApp } = require('firebase-admin/app');
 const app = express();
-
 var admin = require('firebase-admin');
+const firebase = require('firebase/app');
+const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
+require('dotenv').config();
+
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  STORAGE_BUCKET: process.env.storageBucket,
+  MESSAGING_SENDER_ID: process.env.messagingSenderId,
+  appId: process.env.APP_ID,
+};
+firebase.initializeApp(firebaseConfig);
+
+//deploy e esse
 const serviceAccount = JSON.parse(
   process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
 );
-/*
-var serviceAccount = require('./serviceAccountKey.json');
-*/
 
+//ambiente dev e esse
+/*
+const serviceAccount = require('./serviceAccountKey.json');
+*/
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
+app.use(express.json());
 
 app.get('/artigos', (req, res) => {
   admin
@@ -20,16 +35,15 @@ app.get('/artigos', (req, res) => {
     .collection('posts')
     .get()
     .then((snapshot) => {
-      const posts = snapshot.docs.map((doc) => ({
+      let introArtigos = [];
+      const artigos = snapshot.docs.map((doc) => ({
         ...doc.data(),
         uid: doc.id,
       }));
-      console.log(
-        posts.map((post) => {
-          console.log(post.intro);
-        }),
-      );
-      res.json(posts);
+      artigos.map((artigos) => {
+        introArtigos.push(artigos.intro);
+      });
+      res.json(introArtigos);
     });
 });
 
@@ -42,7 +56,6 @@ app.get('/artigosPost/:id', (req, res) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        console.log(doc.data());
         res.json({
           ...doc.data(),
         });
@@ -56,6 +69,26 @@ app.get('/artigosPost/:id', (req, res) => {
     });
 });
 
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    // Tentar fazer login com email e senha
+    const auth = getAuth();
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
+    const token = await userCredential.user.getIdToken();
+    // Retornar o token de autenticação ao cliente
+
+    res.json({ token });
+  } catch (error) {
+    // Retornar erro em caso de falha no login
+    console.log(error.message);
+    res.status(401).json({ error: error.message });
+  }
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log('SERVER RUNNING PORT 5000');

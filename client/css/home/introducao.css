@@ -1,0 +1,47 @@
+
+.homeBio{
+  width: 800px;
+ text-align: center;
+}
+.homeBio h1 {
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+}
+.newsletterInicial{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+ 
+}
+.newsletterInicial h3{
+  text-align: center;
+  margin:auto;
+  font-size: 3rem;
+  width: 20ch;
+
+}
+.newsletterInicial form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-left: 5rem;
+  width: 350px;
+  }
+  
+.newsletterInicial input {
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+
+
+
+}
+.newsletterInicial button{
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+}
+  
+
+  

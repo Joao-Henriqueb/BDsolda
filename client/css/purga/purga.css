@@ -1,0 +1,195 @@
+.introPurga h1{
+  text-align: center;
+  margin-bottom: 2rem
+  
+}
+.introPurga p {
+  text-align: justify;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+ 
+}
+.controlePurga{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+.controlePurga img{
+  width: 600px;
+  transform: scaleX(-1);
+
+}
+.calculadora{
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.calculadora h2 {
+  margin-bottom: 3rem;
+}
+
+.purgaForm{
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.purgaForm label{
+  display: block;
+  margin-bottom: 5px;
+}
+.purgaForm input[type="number"],button {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+
+}
+
+
+
+.cronoResultado{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+.timer-container {
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timer {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+
+}
+
+.purgaForm button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.buttons button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button#startStopBtn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+button#startStopBtn:hover {
+  background-color: #218838;
+}
+
+button#resetBtn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+button#resetBtn:hover {
+  background-color: #c82333;
+}
+
+.resultado{
+  display: none;
+  width: 100%;
+}
+.mostrarResultado{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resultado h1{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.resultado .resultadoInfo{
+  width: 400px;
+}
+.resultadoInfo ul li {
+  padding: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.resultado ul li span{
+  font-weight: 500;
+}
+.aviso{
+  color: red;
+  visibility: hidden;
+
+ 
+}
+
+.modal{
+  visibility: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal .modalTexto{
+  color: white;
+  width: 700px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.8); 
+   margin: auto;
+  font-weight: 700;
+  position: relative;
+
+  
+}
+.modal .modalTexto h2{
+  text-align: center;
+  margin-bottom: 2rem;
+  
+}
+.modal .modalTexto li{
+  margin-bottom: 1rem;
+}
+
+.modal .iconX{
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  
+
+}
+.ativo{
+  visibility: visible;
+}
+
+

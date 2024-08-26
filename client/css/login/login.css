@@ -1,0 +1,63 @@
+.boxLogin{
+  width: 100%; 
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+
+ 
+
+}
+.boxLogin .contentImg{
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.boxLogin .contentImg h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  font-family: "Playfair Display SC", Georgia, "Times New Roman", Times, serif;
+  width: 10ch;
+
+}
+.boxLogin .contentImg img{
+ width:150px;
+ 
+}
+ 
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  height: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 4rem;
+
+
+}
+.login label {
+  margin-bottom: 0.5rem;
+
+}
+.login input {
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.login button{
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.login span{
+  text-align: center;
+  margin-bottom: 2rem;
+}

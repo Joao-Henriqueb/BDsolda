@@ -1,0 +1,22 @@
+.projetos{
+  width: 12 00px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  
+}
+.projetosAtivos p {
+  margin-left: 1rem;
+}
+.projetosAtivos h2{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.projetosAtivos ul li{
+  margin-bottom: 2rem;
+}
+
+.projetos img {
+  width: 600px;
+}

@@ -1,0 +1,57 @@
+
+.artigo h1{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.content{
+  margin-bottom: 2rem;
+}
+.content img{
+  width: 300px;
+  margin: auto;
+
+}
+.entryMeta{
+  margin-bottom: 1rem;
+}
+.entryMeta span{
+  padding: 0.2rem;
+  color: darkgreen;
+
+}
+
+.comentarios{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.comentarios h2{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+  
+.comentarios form{
+  display: flex;
+  flex-direction: column;
+}
+.comentarios label{
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.comentarios input{
+  outline: none;
+  padding: 0.4rem 2rem 0.4rem 2rem ;
+  margin-bottom: 1rem;
+}
+.comentarios textarea{
+  width: 450px;
+  height: 200px;
+  margin-bottom: 1rem;
+}
+.enviarComentario{
+  background-color: gray;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}

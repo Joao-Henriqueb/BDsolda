@@ -3,6 +3,7 @@ const app = express();
 var admin = require('firebase-admin');
 const firebase = require('firebase/app');
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
+const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -33,9 +34,14 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 app.use(cors(corsOptions));
-
 app.use(express.json());
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'pages/index.html'));
+});
 app.get('/artigos', (req, res) => {
   admin
     .firestore()

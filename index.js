@@ -3,6 +3,7 @@ const app = express();
 var admin = require('firebase-admin');
 const firebase = require('firebase/app');
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
+const cors = require('cors');
 require('dotenv').config();
 
 const firebaseConfig = {

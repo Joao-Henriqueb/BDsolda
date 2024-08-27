@@ -57,15 +57,17 @@ app.get('/artigos', (req, res) => {
     .collection('posts')
     .get()
     .then((snapshot) => {
-      let introArtigos = [];
+      //let introArtigos = [];
       const artigos = snapshot.docs.map((doc) => ({
         ...doc.data(),
         uid: doc.id,
       }));
+      /*
       artigos.map((artigos) => {
         introArtigos.push(artigos.intro);
       });
-      //console.log(introArtigos);
+      console.log(introArtigos);
+      */
       res.render('artigos', { posts: artigos });
     });
 });

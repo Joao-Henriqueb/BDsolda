@@ -1,35 +1,36 @@
-@import "./css/global/global.css";
+@import "../css/global/global.css";
+
 /*Utilidades */
-@import "./css/utilidades/componentes.css";
-@import './css/utilidades/animacao.css';
+@import "../css/utilidades/componentes.css";
+@import '../css/utilidades/animacao.css';
 /*Header*/
-@import "./css/global/header.css";
+@import "../css/global/header.css";
 
 
 
 /*introdução*/
-@import "./css/home/introducao.css";
+@import "../css/home/introducao.css";
 
 /*Projetos*/
-@import "./css/home/projetoAtivos.css";
+@import "../css/home/projetoAtivos.css";
 
 /*purga*/
-@import "./css/purga/purga.css";
+@import "../css/purga/purga.css";
 /*artigos*/
-@import "./css/blog/artigos.css";
+@import "../css/blog/artigos.css";
 
 /*artigoPost*/
-@import "./css/blog/artigoPost.css";
+@import "../css/blog/artigoPost.css";
 
 /*Sobre*/
 
-@import "./css/blog/sobre.css";
+@import "../css/blog/sobre.css";
 
 /*dashboard */
-@import "./css/dashboard/dashboard.css";
-@import "./css/login/login.css";
+@import "../css/dashboard/dashboard.css";
+@import "../css/login/login.css";
 /*footer*/
-@import "./css/global/footer.css";
+@import "../css/global/footer.css";
 
 
 

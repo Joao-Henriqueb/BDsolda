@@ -65,8 +65,8 @@ app.get('/artigos', (req, res) => {
       artigos.map((artigos) => {
         introArtigos.push(artigos.intro);
       });
-      console.log(introArtigos);
-      res.render('artigos', { id: introArtigos.id });
+      //console.log(introArtigos);
+      res.render('artigos', { posts: artigos });
     });
 });
 

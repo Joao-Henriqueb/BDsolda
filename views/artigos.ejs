@@ -36,12 +36,16 @@
   <main class="container posts">
     <div class=" postsArtigos">
       <h1>📝 Artigos</h1>
-      <div>
-        <a href="">
-          <%=id.id%>
-        </a>
-      </div>
+      <% for(let post of posts){ %>
 
+        <div class="1">
+          <a href="">
+            <%=post.linkIntro%>
+          </a>
+        </div>
+
+
+        <%}%>
     </div>
     <div class="abaLateral">
       <div class="newsletter">

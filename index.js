@@ -35,12 +35,15 @@ admin.initializeApp({
 });
 app.use(cors(corsOptions));
 app.use(express.json());
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'ejs');
+//app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages/index.html'));
+});
+app.get('/check', (req, res) => {
+  res.send('CSS e Imagens estão sendo servidos corretamente.');
 });
 app.get('/artigos', (req, res) => {
   admin

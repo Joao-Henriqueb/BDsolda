@@ -68,7 +68,7 @@ app.get('/artigos', (req, res) => {
       });
       console.log(introArtigos);
       */
-      res.render('artigos', { posts: artigos });
+      res.render('artigos', { posts: artigos[0] });
     });
 });
 

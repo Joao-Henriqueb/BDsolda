@@ -22,12 +22,14 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 //deploy e esse
+
 const serviceAccount = JSON.parse(
   process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
 );
 
-//ambiente dev e esse
 /*
+//ambiente dev e esse
+
 const serviceAccount = require('./serviceAccountKey.json');
 */
 admin.initializeApp({
@@ -57,18 +59,14 @@ app.get('/artigos', (req, res) => {
     .collection('posts')
     .get()
     .then((snapshot) => {
-      //let introArtigos = [];
+      let introArtigos = [];
       const artigos = snapshot.docs.map((doc) => ({
-        ...doc.data(),
+        ...doc.data().intro,
         uid: doc.id,
+        data: doc.data().data,
       }));
-      /*
-      artigos.map((artigos) => {
-        introArtigos.push(artigos.intro);
-      });
-      console.log(introArtigos);
-      */
-      res.render('artigos', { posts: artigos[0] });
+
+      res.render('artigos', { posts: artigos });
     });
 });
 

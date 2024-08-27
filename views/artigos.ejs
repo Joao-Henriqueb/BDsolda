@@ -32,18 +32,31 @@
       </ul>
     </nav>
   </header>
-
   <main class="container posts">
     <div class=" postsArtigos">
       <h1>📝 Artigos</h1>
+
       <% for(let post of posts){ %>
-        <div class="1">
-          <a href="">
-            <%=post.linkIntro%>
+        <div class="post">
+          <a href="artigo?id=<%=post.uid%>">
+
+            <img src=" <%=post.linkIntro%>" alt="">
+            <span>
+              <%=post.data%>
+            </span>
+            <span>
+              <%=post.autor%>
+            </span>
+            <h2>
+              <%=post.titulo%>
+            </h2>
+            <p>
+              <%=post.textoIntro%>
+            </p>
           </a>
-          <p>que isso :
-            <%=post.autor%>
-          </p>
+
+
+
         </div>
         <%}%>
     </div>

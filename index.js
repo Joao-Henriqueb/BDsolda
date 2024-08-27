@@ -62,13 +62,17 @@ app.get('/artigos', (req, res) => {
         ...doc.data(),
         uid: doc.id,
       }));
-      /*
+
       artigos.map((artigos) => {
         introArtigos.push(artigos.intro);
       });
+      console.log('intro');
       console.log(introArtigos);
-      */
-      res.render('artigos', { posts: artigos[0] });
+      console.log('2');
+      console.log(artigos);
+
+      res.json(introArtigos);
+      //res.render('artigos', { posts: artigos[0] });
     });
 });
 

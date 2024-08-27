@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/controledepurga', (req, res) => {
-  res.sendFile(path.join(__dirname, 'pages/purga.html'));
+  res.sendFile(path.join(__dirname, 'pages/controledepurga.html'));
 });
 app.get('/artigos', (req, res) => {
   admin

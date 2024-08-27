@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+
+  <header class="header container">
+    <div>
+      <a href="./">
+        <img width="100px" height="100px" src="/img/logo.png" alt="logo">
+      </a>
+    </div>
+    <nav aria-label="primaria">
+      <ul class="header-menu">
+        <li>
+          <a href="artigos.html">Artigos</a>
+        </li>
+        <li>
+          <a href="controledepurga.html">Controle de Purga
+          </a>
+        </li>
+        <li>
+          <a href="sobre.html">Sobre o SB</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="introPurga container">
+      <h1>Controle de Purga</h1>
+
+      <p>Bem-vindo à nossa Calculadora de Purga de Solda! Esta ferramenta foi desenvolvida especialmente para soldadores e profissionais da área de soldagem que trabalham com tubos de aço inoxidável. A purga com nitrogênio é um passo crucial no processo de soldagem TIG, garantindo a remoção completa do oxigênio do interior do tubo antes da soldagem, prevenindo contaminações e garantindo uma solda de alta qualidade.
+
+        O processo de purga funciona introduzindo nitrogênio no interior do tubo para deslocar o oxigênio presente. O nitrogênio, sendo um gás inerte, não reage com o material do tubo, criando um ambiente interno livre de oxigênio e minimizando a formação de óxidos e outras impurezas durante a soldagem.
+
+        Com a nossa Calculadora de Purga, você pode facilmente determinar o tempo necessário de purga com base nas especificações do seu tubo. Basta inserir o comprimento do tubo, o diâmetro em polegadas e a vazão de nitrogênio. Nossa calculadora fornecerá o tempo estimado de purga e indicará se a vazão está adequada. Vale ressaltar que a vazão e o tempo apresentados são apenas para referência; é responsabilidade do soldador definir e ajustar esses parâmetros de acordo com as condições específicas de seu trabalho e normas técnicas aplicáveis.
+
+        Além disso, incluímos um cronômetro integrado para que você possa acompanhar o tempo de purga diretamente no site, tornando o processo ainda mais conveniente e preciso. Utilize esta ferramenta para otimizar suas operações de soldagem e garantir resultados consistentes e de alta qualidade.
+
+        Explore também a seção de artigos para aprender mais sobre técnicas avançadas de soldagem e melhores práticas.</p>
+    </section>
+  </main>
+  <article class="container controlePurga ">
+    <div>
+      <img src="/img/Designer(2).jpeg" alt="soldador">
+    </div>
+    <div class="calculadora">
+      <h2>Medidas do tubo</h2>
+      <form class="purgaForm">
+        <label for="comprimento">Comprimento do Tubo (m):</label>
+        <input type="number" id="comprimento" name="comprimento" required>
+        <label for="diametro">Diâmetro do Tubo (polegadas):</label>
+        <input type="number" id="diametro" name="diametro" required>
+        <label for="vazao">Vazão (L/min):</label>
+        <input type="number" id="vazao" name="vazao" required>
+        <button type="button" class="btnFormulario">Calcular</button>
+        <span class="aviso">PRENCHA TODOS OS CAMPOS</span>
+      </form>
+    </div>
+  </article>
+
+  <article class="cronoResultado container">
+
+    <section class="cronometro">
+      <div class="timer-container">
+        <div class="timer">
+          <span id="minutes">00:00:00</span>
+
+        </div>
+
+        <div class="buttons">
+          <button id="startStopBtn">Iniciar</button>
+          <button id="resetBtn">Resetar</button>
+        </div>
+        <p class="aviso">CALCULE O TEMPO PRIMEIRO</p>
+
+      </div>
+    </section>
+
+    <section class="resultado">
+
+
+      <h1>Resultado</h1>
+      <div class="resultadoInfo">
+        <ul>
+          <li class="tempo">Tempo: <span></span></li>
+          <li class="vazao">Vazão recomendada: <span></span></li>
+        </ul>
+
+    </section>
+    <div class="modal">
+      <div class="modalTexto">
+        <h2>Aviso</h2>
+        <ol>
+          <li>Se o tempo de purga não for calculado corretamente, pode resultar em uma remoção incompleta do oxigênio, levando a soldas de baixa qualidade com contaminação interna.</li>
+          <li>Problemas com o cronômetro ou com o sistema de purga podem resultar em tempos incorretos, comprometendo a purga e a qualidade da solda.</li>
+          <li>Confiar apenas no cronômetro sem verificar visualmente a solda ou monitorar os níveis de oxigênio pode levar a erros, o correto e utilizar medidores de oxigênio para garantir que o nível de oxigênio na área de solda esteja abaixo do limite aceitável antes de iniciar a soldagem.</li>
+          <li>Avalie as condições do ambiente de trabalho e ajuste o tempo de purga, se necessário, para garantir a eficiência do processo</li>
+        </ol>
+        <span class="material-symbols-outlined iconX">
+          close
+        </span>
+
+      </div>
+
+    </div>
+
+
+  </article>
+
+  <footer>
+    <p>&copy; 2024 Controle de Purga</p>
+
+
+  </footer>
+
+  <script src="/js/calculador.js"></script>
+</body>
+
+</html>

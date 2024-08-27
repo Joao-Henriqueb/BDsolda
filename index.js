@@ -42,8 +42,9 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages/index.html'));
 });
-app.get('/check', (req, res) => {
-  res.send('CSS e Imagens estão sendo servidos corretamente.');
+
+app.get('/controledepurga', (req, res) => {
+  res.sendFile(path.join(__dirname, 'pages/purga.html'));
 });
 app.get('/artigos', (req, res) => {
   admin

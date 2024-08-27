@@ -1,7 +1,7 @@
 .xxt{
   background-color: red
 }
-@import "../css/global/global.css";
+@import "/css/global/global.css";
 /*Utilidades */
 @import "../css/utilidades/componentes.css";
 @import '../css/utilidades/animacao.css';

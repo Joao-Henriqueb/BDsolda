@@ -27,9 +27,8 @@ const serviceAccount = JSON.parse(
   process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
 );
 
-/*
 //ambiente dev e esse
-
+/*
 const serviceAccount = require('./serviceAccountKey.json');
 */
 admin.initializeApp({
@@ -70,8 +69,10 @@ app.get('/artigos', (req, res) => {
     });
 });
 
-app.get('/artigosPost/:id', (req, res) => {
+app.get('/artigo/:id', (req, res) => {
   const id = req.params.id;
+  console.log(id);
+
   admin
     .firestore()
     .collection('posts')
@@ -79,6 +80,7 @@ app.get('/artigosPost/:id', (req, res) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
+        console.log('test');
         res.json({
           ...doc.data(),
         });

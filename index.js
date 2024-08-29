@@ -17,13 +17,13 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 firebase.initializeApp(firebaseConfig);
-/*
+
 const corsOptions = {
-  origin: 'http://localhost:5000/login',
+  origin: 'https://b-dsolda.vercel.app/',
   methods: 'GET,POST',
   optionsSuccessStatus: 200,
 };
-*/
+
 //deploy e esse
 
 const serviceAccount = JSON.parse(

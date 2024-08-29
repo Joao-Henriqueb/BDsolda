@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+  <nav class="sidebar">
+    <h2>Painel de administrador</h2>
+    <ul>
+      <li><a href="#">Nova Postagem</a></li>
+      <li><a href="#">Posts</a></li>
+      <li><button class="sair">Sair</button></li>
+    </ul>
+  </nav>
+  <div class="main-content">
+    <h1>Nova Postagem</h1>
+    <div id="editor"></div>
+    <form action="" class="formIntro">
+      <label for="autor">Autor</label>
+      <input type="text" name="autor">
+      <label for="titulo">Titulo</label>
+      <input type="text" name="titulo">
+      <label for="textoIntro">apresentação:</label>
+      <textarea name="textoIntro" id=""></textarea>
+      <label for="file">Imagem de capa:</label>
+      <input class="imgIntro" name="imgIntro" type="file">
+
+      <span class="aviso">PRENCHA TODOS OS CAMPOS</span>
+
+    </form>
+    <button class="salvar">Salvar</button>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script type="module" src="/script/editor.js"></script>
+  <!--
+  <script type="module" src="js/firebase.js"></script>
+  -->
+</body>
+
+
+</html>

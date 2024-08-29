@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 var admin = require('firebase-admin');
 const firebase = require('firebase/app');
@@ -16,11 +17,13 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 firebase.initializeApp(firebaseConfig);
+/*
 const corsOptions = {
-  origin: 'http://127.0.0.1:5501',
+  origin: 'http://localhost:5000/login',
   methods: 'GET,POST',
   optionsSuccessStatus: 200,
 };
+*/
 //deploy e esse
 
 const serviceAccount = JSON.parse(
@@ -38,9 +41,32 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
 app.use(express.static(path.join(__dirname, 'client')));
+app.use(cookieParser());
 
+const authenticateToken = async (req, res, next) => {
+  const token = req.cookies.authToken;
+  if (!token) {
+    // Usuário não autenticado, permitir acesso à página de login
+    if (req.path === '/login') {
+      return next();
+    }
+    // Redirecionar para login se tentar acessar outras rotas
+    return res.redirect('/login');
+  }
+
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    req.user = decodedToken;
+    if (req.path === '/login') {
+      return res.redirect('/novopost');
+    }
+    next();
+  } catch (error) {
+    res.redirect('/login');
+    //return res.status(403).json({ message: 'token inválido' });
+  }
+};
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages/index.html'));
 });
@@ -58,7 +84,6 @@ app.get('/artigos', (req, res) => {
     .collection('posts')
     .get()
     .then((snapshot) => {
-      let introArtigos = [];
       const artigos = snapshot.docs.map((doc) => ({
         ...doc.data().intro,
         uid: doc.id,
@@ -71,7 +96,6 @@ app.get('/artigos', (req, res) => {
 
 app.get('/artigo/:id', (req, res) => {
   const id = req.params.id;
-  console.log(id);
 
   admin
     .firestore()
@@ -80,7 +104,6 @@ app.get('/artigo/:id', (req, res) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        console.log('test');
         res.json({
           ...doc.data(),
         });
@@ -93,9 +116,15 @@ app.get('/artigo/:id', (req, res) => {
       res.status(500).send('Erro ao puxar o post');
     });
 });
+app.get('/login', authenticateToken, async (req, res) => {
+  const page = req.params.page;
+  console.log(page);
+  res.sendFile(path.join(__dirname, 'pages/login.html'));
+});
 
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
+
   try {
     // Tentar fazer login com email e senha
     const auth = getAuth();
@@ -106,13 +135,21 @@ app.post('/login', async (req, res) => {
     );
     const token = await userCredential.user.getIdToken();
     // Retornar o token de autenticação ao cliente
-
-    res.json({ token });
+    res.cookie('authToken', token, {
+      httpOnly: true, // Impede o acesso ao cookie via JavaScript
+      secure: true, // Envia o cookie apenas em conexões HTTPS
+      maxAge: 3600000, // 1 hora
+    });
+    res.redirect('/novopost');
   } catch (error) {
     // Retornar erro em caso de falha no login
     console.log(error.message);
     res.status(401).json({ error: error.message });
   }
+});
+
+app.get('/novopost', authenticateToken, (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/novopost.html'));
 });
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

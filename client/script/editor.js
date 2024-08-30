@@ -30,6 +30,36 @@ const quill = new Quill('#editor', {
   placeholder: 'Compose an epic...',
   theme: 'snow', // or 'bubble'
 });
+
+// ativar todas função e salvar no bd
+async function processHtmlContent() {
+  //pega conteudo html do editor
+  let html = quill.getSemanticHTML(0); // pegar html
+  const delta = quill.getContents(); // pegar imagem
+
+  //pega src da imagem
+  /*
+  const base64Images = extractBase64Images(html);
+
+  //separa as imagens,cria nome unico e sobe elas pro bd e retorna referencia
+  const imageUrls = await uploadBase64Images(base64Images);
+
+  //alterar na imagem o src, colocando referencia do bd
+  base64Images.forEach((base64String, index) => {
+    html = html.replace(base64String, imageUrls[index]);
+  });
+  //pegar data atual
+  const hoje = new Date();
+  const dia = hoje.getDate();
+  const mes = hoje.getMonth() + 1;
+  const ano = hoje.getFullYear();
+  const dtAtual = dia + '/' + mes + '/' + ano;
+  const intro = await introFormulario();
+  //subir tudo pro bd
+  addPost(html, dtAtual, intro);
+  */
+}
+
 /*
 //extrair imagem do conteudo html e pega o src
 function extractBase64Images(htmlContent) {

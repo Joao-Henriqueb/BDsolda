@@ -104,9 +104,22 @@ app.get('/artigo/:id', (req, res) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        res.json({
-          ...doc.data(),
-        });
+        let artigo = doc.data();
+        let entryMeta = `<div class="entryMeta">
+        <span>${artigo.data}</span>
+        <span>${artigo.intro.autor}</span>
+        <span>${artigo.intro.categoryTag}</span>
+         </div>`;
+        let palavra = '</h1>';
+
+        let posicao = artigo.conteudo.indexOf('</h1>');
+        let posicaopalavra = posicao + palavra.length;
+        let newArtigo =
+          artigo.conteudo.slice(0, posicaopalavra) +
+          entryMeta +
+          artigo.conteudo.slice(posicaopalavra);
+        console.log(newArtigo);
+        res.render('artigo', { newArtigo });
       } else {
         res.status(404).send('documento não encontrado');
       }

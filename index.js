@@ -6,6 +6,7 @@ const firebase = require('firebase/app');
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 const path = require('path');
 const cors = require('cors');
+const multer = require('multer');
 require('dotenv').config();
 
 const firebaseConfig = {
@@ -44,8 +45,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(cookieParser());
 
+// Configurando multer para armazenar na memória
+const storage = multer.memoryStorage();
+const upload = multer({ sotrage: storage });
+
 const authenticateToken = async (req, res, next) => {
   const token = req.cookies.authToken;
+
   if (!token) {
     // Usuário não autenticado, permitir acesso à página de login
     if (req.path === '/login') {
@@ -61,6 +67,7 @@ const authenticateToken = async (req, res, next) => {
     if (req.path === '/login') {
       return res.redirect('/novopost');
     }
+
     next();
   } catch (error) {
     res.redirect('/login');
@@ -164,7 +171,20 @@ app.post('/login', async (req, res) => {
 app.get('/novopost', authenticateToken, (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/novopost.html'));
 });
+
+app.post(
+  '/upload',
+  authenticateToken,
+  upload.single('imgIntro'),
+  (req, res) => {
+    console.log(req.body);
+    //console.log(req.file);
+  },
+);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log('SERVER RUNNING PORT 5000');
 });
+
+// separar rotas depois

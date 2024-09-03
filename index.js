@@ -23,15 +23,15 @@ const corsOptions = {
 };
 
 //deploy e esse
-/*
+
 const serviceAccount = JSON.parse(
   process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
 );
-*/
+
 //ambiente dev e esse
-
+/*
 const serviceAccount = require('./serviceAccountKey.json');
-
+*/
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
@@ -41,8 +41,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(cookieParser());
-
-// Configurando multer para armazenar na memória
 
 //rotas
 const getRoutes = require('./routes/getRoutes');

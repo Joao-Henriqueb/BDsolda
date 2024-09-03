@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const multer = require('multer');
-const storage = multer.memoryStorage();
 
-const upload = multer({ storage: storage });
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage }); // Configurando multer para armazenar img  na memória
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 const authController = require('../controllers/authController');
 

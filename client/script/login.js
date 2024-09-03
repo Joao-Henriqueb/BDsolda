@@ -8,7 +8,7 @@ async function login() {
   const email = loginForm.elements['email'].value;
   const password = loginForm.elements['password'].value;
   try {
-    const res = await fetch('https://b-dsolda.vercel.app/login', {
+    const res = await fetch('https://b-dsolda.vercel.app/api/login', {
       headers: { 'Content-type': 'application/json;charset=UTF-8' },
       method: 'POST',
       body: JSON.stringify({ email, password }),

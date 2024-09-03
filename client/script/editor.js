@@ -57,7 +57,7 @@ async function processHtmlContent() {
     formData.append('dtAtual', dtAtual);
     formData.append('titulo', titulo);
     console.log([...formData.entries()]);
-    const res = await fetch('/upload', {
+    const res = await fetch('/api/upload', {
       method: 'POST',
       body: formData,
     });

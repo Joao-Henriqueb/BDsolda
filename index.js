@@ -46,8 +46,8 @@ app.use(cookieParser());
 const getRoutes = require('./routes/getRoutes');
 const postRoutes = require('./routes/postRoutes');
 
-app.use('/', getRoutes);
 app.use('/api', postRoutes);
+app.use('/', getRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

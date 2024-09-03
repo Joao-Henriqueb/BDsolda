@@ -17,7 +17,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const corsOptions = {
-  origin: '*',
+  origin: 'https://b-dsolda.vercel.app',
   methods: 'GET,POST',
   optionsSuccessStatus: 200,
 };

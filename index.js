@@ -1,8 +1,8 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
-var admin = require('firebase-admin');
-const firebase = require('firebase/app');
+//var admin = require('firebase-admin');
+//const firebase = require('firebase/app');
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
@@ -29,7 +29,7 @@ const corsOptions = {
 };
 
 //deploy e esse
-
+/*
 const serviceAccount = JSON.parse(
   process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
 );
@@ -38,14 +38,15 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   storageBucket: process.env.STORAGE_BUCKET,
 });
+*/
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(cookieParser());
-const db = admin.firestore();
-const bucket = admin.storage().bucket();
+//const db = admin.firestore();
+//const bucket = admin.storage().bucket();
 //rotas
 const getRoutes = require('./routes/getRoutes');
 const postRoutes = require('./routes/postRoutes');

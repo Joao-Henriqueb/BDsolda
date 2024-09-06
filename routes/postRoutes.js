@@ -5,7 +5,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }); // Configurando multer para armazenar img  na memória
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 const authController = require('../controllers/authController');
-const { bucket, db } = require('../index');
+//const { bucket, db } = require('../index');
 const { v4: uuidv4 } = require('uuid'); // Para gerar nomes únicos para os arquivos
 
 router.post('/login', async (req, res) => {
@@ -48,7 +48,7 @@ function substituirSrc(linksImgs, html, imgIntro) {
 
   return html;
 }
-/*
+
 router.post(
   '/upload',
   authController.authenticateToken,
@@ -122,5 +122,5 @@ router.post(
     }
   },
 );
-*/
+
 module.exports = router;

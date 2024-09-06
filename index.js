@@ -7,15 +7,15 @@ const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
   projectId: process.env.PROJECT_ID,
   STORAGE_BUCKET: process.env.STORAGE_BUCKET,
   MESSAGING_SENDER_ID: process.env.messagingSenderId,
   appId: process.env.APP_ID,
-};
-firebase.initializeApp(firebaseConfig);
+};*/
+//firebase.initializeApp(firebaseConfig);
 const corsOptions = {
   origin: 'https://b-dsolda.vercel.app',
   methods: 'GET,POST',

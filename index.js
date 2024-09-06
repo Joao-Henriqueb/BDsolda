@@ -42,9 +42,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(cookieParser());
-//const db = admin.firestore();
-//const bucket = admin.storage().bucket();
-//module.exports = { bucket, db };
+const db = admin.firestore();
+const bucket = admin.storage().bucket();
+module.exports = { bucket, db };
 
 //rotas
 const getRoutes = require('./routes/getRoutes');

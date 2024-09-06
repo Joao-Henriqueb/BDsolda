@@ -6,16 +6,16 @@ const firebase = require('firebase/app');
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
+
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
   projectId: process.env.PROJECT_ID,
-  STORAGE_BUCKET: process.env.storageBucket,
+  STORAGE_BUCKET: process.env.STORAGE_BUCKET,
   MESSAGING_SENDER_ID: process.env.messagingSenderId,
   appId: process.env.APP_ID,
 };
 firebase.initializeApp(firebaseConfig);
-
 const corsOptions = {
   origin: 'https://b-dsolda.vercel.app',
   methods: 'GET,POST',
@@ -34,6 +34,7 @@ const serviceAccount = require('./serviceAccountKey.json');
 */
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
+  storageBucket: process.env.STORAGE_BUCKET,
 });
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -41,6 +42,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(cookieParser());
+const db = admin.firestore();
+const bucket = admin.storage().bucket();
+module.exports = { bucket, db };
 
 //rotas
 const getRoutes = require('./routes/getRoutes');
@@ -50,8 +54,7 @@ app.use('/api', postRoutes);
 app.use('/', getRoutes);
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log('SERVER RUNNING PORT 5000');
 });
-
-// separar rotas depois

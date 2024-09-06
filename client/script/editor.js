@@ -1,23 +1,6 @@
-/*import { v4 as uuidv4 } from 'https://jspm.dev/uuid';*/
-const formData = new FormData();
-
-/*
-async function addPost(conteudo, data, intro) {
-  try {
-    const docRef = await addDoc(collection(db, 'posts'), {
-      conteudo,
-      data,
-      intro,
-    });
-    console.log('id: ' + docRef.id);
-  } catch (error) {
-    console.log('error ?');
-    console.log('erro ao add', e);
-  }
-}
-*/
-//editor de texto
 const salvar = document.querySelector('.salvar');
+const contentType = 'image/png';
+
 const quill = new Quill('#editor', {
   modules: {
     toolbar: [
@@ -31,183 +14,66 @@ const quill = new Quill('#editor', {
 });
 salvar.addEventListener('click', processHtmlContent);
 
-// ativar todas função e salvar no bd
-async function processHtmlContent() {
-  //pega conteudo html do editor
-  let html = quill.getSemanticHTML(0); // pegar html
-  const delta = quill.getContents(); // pegar imagem
-  const form = document.querySelector('.formIntro');
+function processHtmlContent() {
+  const images = extractImagesFromQuill();
+  const form = extractTextandConvertImgBlob(images);
+
+  fetch('/api/upload', {
+    method: 'POST',
+    body: form,
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error('Error:', error.message));
+}
+
+function extractImagesFromQuill() {
+  const delta = quill.getContents();
+  const images = [];
+
+  delta.ops.forEach((op) => {
+    if (op.insert && op.insert.image) {
+      images.push(op.insert.image); // Aqui as imagens estão em base64
+    }
+  });
+
+  return images;
+}
+function extractTextandConvertImgBlob(images) {
+  const formData = new FormData();
+  const html = quill.getSemanticHTML();
+  const formulario = document.querySelector('.formIntro');
   const imgIntro = document.querySelector('.imgIntro').files[0];
-  const textoIntro = form.elements['textoIntro'].value;
-  const autor = form.elements['autor'].value;
-  const titulo = form.elements['titulo'].value;
+  const textoIntro = formulario.elements['textoIntro'].value;
+  const categoryTag = formulario.elements['categoryTag'].value;
+  const autor = formulario.elements['autor'].value;
+  const titulo = formulario.elements['titulo'].value;
   const hoje = new Date();
   const dia = hoje.getDate();
   const mes = hoje.getMonth() + 1;
   const ano = hoje.getFullYear();
   const dtAtual = dia + '/' + mes + '/' + ano;
-  const dados = { html, delta, textoIntro, imgIntro, autor, titulo, dtAtual };
-
-  if (textoIntro && imgIntro && autor && titulo && html) {
-    formData.append('textoIntro', textoIntro);
-    formData.append('imgIntro', imgIntro);
-    formData.append('autor', autor);
-    formData.append('html', html);
-    formData.append('delta', JSON.stringify(delta));
-    formData.append('dtAtual', dtAtual);
-    formData.append('titulo', titulo);
-    console.log([...formData.entries()]);
-    const res = await fetch('/api/upload', {
-      method: 'POST',
-      body: formData,
-    });
-    if (res.ok) {
-      console.log('enviado');
-    } else {
-      console.log('erro ao enviar');
-    }
-  } else {
-    form.querySelector('.aviso').classList.add('ativo');
-    return;
-  }
-
-  //const imagens = extractBase64Images(delta); // função extrai imagens
-
-  //const newNamesImg = admImgsbd(imagens); //cria nome unico para imagens e envia elas pro back enviar pro bd
-
-  //
-  //pega src da imagem
-  /*
-  const base64Images = extractBase64Images(html);
-
-  //separa as imagens,cria nome unico e sobe elas pro bd e retorna referencia
-  const imageUrls = await uploadBase64Images(base64Images);
-
-  //alterar na imagem o src, colocando referencia do bd
-  base64Images.forEach((base64String, index) => {
-    html = html.replace(base64String, imageUrls[index]);
+  images.forEach((image, index) => {
+    const blob = base64ToBlob(image); // Convertemos a base64 para blob
+    formData.append(`image_${index}`, blob, `image_${index}.png`); // Nome único
   });
-  //pegar data atual
-  const hoje = new Date();
-  const dia = hoje.getDate();
-  const mes = hoje.getMonth() + 1;
-  const ano = hoje.getFullYear();
-  const dtAtual = dia + '/' + mes + '/' + ano;
-  const intro = await introFormulario();
-  //subir tudo pro bd
-  addPost(html, dtAtual, intro);
-  */
+  //IMPORTANTE:::ao mudar ordem do formData.append do blob e do img intro ira interferir no final::IMPORTANTE
+  formData.append('categoryTag', categoryTag);
+  formData.append('html', html);
+  formData.append('imgIntro', imgIntro);
+  formData.append('textoIntro', textoIntro);
+  formData.append('autor', autor);
+  formData.append('titulo', titulo);
+  formData.append('data', dtAtual);
+
+  return formData;
 }
-
-// extrai imagens do delta
-function extractBase64Images(delta) {
-  let imgForm = [];
-  delta.map((x) => {
-    if (x.insert.image) {
-      imgForm.push(x.insert.image);
-    }
-  });
-  return imgForm;
-}
-// administra as outras função de dar nome unico e
-async function admImgsbd(imagens) {
-  let uniquesNames = await uniqueName(imagens);
-  let UrlImgs = await uploadUniqNames(uniquesNames, imagens);
-
-  /*
-    const storageRef = ref(storage, `posts/${imageName}`);
-    await uploadString(storageRef, base64String, 'data_url');
-    const downloadURL = await getDownloadURL(storageRef);
-    return downloadURL;
-    */
-}
-//cria nome unico para imagem
-async function uniqueName(imagens) {
-  let newNames = [];
-  imagens.forEach((element, index) => {
-    const uniqueName = `${uuidv4()}_${Date.now()}_${index}`; // Gera nome único
-    newNames.push(uniqueName);
-  });
-  return newNames;
-}
-
-// recebe os nomes unicos ja criado e a imagens,sobe pro banco e retorna url
-async function uploadUniqNames(names, imgs) {
-  //const storageRef = ref(storage, `posts/${imageName}`);
-  //await uploadString(storageRef, base64String, 'data_url');
-  //const downloadURL = await getDownloadURL(storageRef);
-}
-
-//sobe as imagens para o banco e retorna url
-
-/*
-//extrair imagem do conteudo html e pega o src
-function extractBase64Images(htmlContent) {
-  const imageTags = htmlContent.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
-  const base64Images = [];
-
-  if (imageTags) {
-    imageTags.forEach((tag) => {
-      const src = tag.match(/src="([^"]*)"/);
-      if (src && src[1].startsWith('data:image')) {
-        base64Images.push(src[1]);
-      }
-    });
+function base64ToBlob(base64) {
+  const byteCharacters = atob(base64.split(',')[1]);
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
   }
-
-  return base64Images;
+  const byteArray = new Uint8Array(byteNumbers); // Cria um array de bytes a partir dos códigos ASCII
+  return new Blob([byteArray], { type: contentType }); // Cria um Blob a partir do array de bytes
 }
-*/
-/*
-//salvar imagem no banco e cria nome unico
-
-async function uploadBase64Images(base64Images) {
-  const uploadPromises = base64Images.map((base64String, index) => {
-    //Cria um nome único para cada imagem
-    const imageName = `image_${Date.now()}_${index}.png`; //
-
-    //sobe a imagem
-    return uploadImage(base64String, imageName);
-  });
-
-  return await Promise.all(uploadPromises);
-}
-//sobe imagem
-async function uploadImage(base64String, imageName) {
-  const storageRef = ref(storage, `posts/${imageName}`);
-  await uploadString(storageRef, base64String, 'data_url');
-  const downloadURL = await getDownloadURL(storageRef);
-  return downloadURL;
-}
-
-async function uploadImageIntro(arquivo) {
-  const uniqueName = `${uuidv4()}_${Date.now()}_${arquivo.name}`; // Gera nome único
-
-  const storageRef = ref(storage, `posts/${uniqueName}`);
-  try {
-    await uploadBytesResumable(storageRef, arquivo); // Realiza o upload
-    const downloadURL = await getDownloadURL(storageRef); // Obtém a URL de download
-    return downloadURL;
-  } catch (error) {
-    console.error('Erro no upload:', error);
-  }
-}
-
-
-async function introFormulario() {
-  const form = document.querySelector('.formIntro');
-  const imgIntro = document.querySelector('.imgIntro').files[0];
-  const textoIntro = form.elements['textoIntro'].value;
-  const autor = form.elements['autor'].value;
-  const titulo = form.elements['titulo'].value;
-
-  if (textoIntro && imgIntro && autor && titulo) {
-    console.log(textoIntro, imgIntro, autor);
-  } else {
-    form.querySelector('.aviso').classList.add('ativo');
-  }
-}
-
-
-//ver se usuario ta logado
-*/

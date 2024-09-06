@@ -3,11 +3,7 @@ var router = express.Router();
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }); // Configurando multer para armazenar img  na memória
-const {
-  getAuth,
-  signInWithEmailAndPassword,
-  getStorage,
-} = require('firebase/auth');
+const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 const authController = require('../controllers/authController');
 const { bucket, db } = require('../index');
 const { v4: uuidv4 } = require('uuid'); // Para gerar nomes únicos para os arquivos
@@ -52,7 +48,7 @@ function substituirSrc(linksImgs, html, imgIntro) {
 
   return html;
 }
-
+/*
 router.post(
   '/upload',
   authController.authenticateToken,
@@ -126,5 +122,5 @@ router.post(
     }
   },
 );
-
+*/
 module.exports = router;

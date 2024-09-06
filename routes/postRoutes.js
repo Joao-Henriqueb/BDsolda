@@ -6,8 +6,8 @@ const upload = multer({ storage: storage }); // Configurando multer para armazen
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 const authController = require('../controllers/authController');
 const { v4: uuidv4 } = require('uuid'); // Para gerar nomes únicos para os arquivos
-const db = admin.firestore();
-const bucket = admin.storage().bucket();
+//const db = admin.firestore();
+//const bucket = admin.storage().bucket();
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;

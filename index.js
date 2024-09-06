@@ -52,7 +52,6 @@ app.use('/api', postRoutes);
 app.use('/', getRoutes);
 
 const PORT = process.env.PORT || 5000;
-module.exports = app;
 
 app.listen(PORT, () => {
   console.log('SERVER RUNNING PORT 5000');

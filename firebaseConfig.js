@@ -15,5 +15,4 @@ if (!admin.apps.length) {
 // Exporta o Firestore e o Storage
 const db = admin.firestore();
 const bucket = admin.storage().bucket();
-
 module.exports = { db, bucket };

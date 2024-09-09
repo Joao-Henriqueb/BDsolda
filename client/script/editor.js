@@ -15,6 +15,7 @@ const quill = new Quill('#editor', {
 salvar.addEventListener('click', processHtmlContent);
 
 function processHtmlContent() {
+  
   const images = extractImagesFromQuill();
   const form = extractTextandConvertImgBlob(images);
 

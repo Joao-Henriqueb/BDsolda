@@ -40,7 +40,7 @@
     };
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+    const app = firebase.initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     const loginForm = document.querySelector('.login');

@@ -26,10 +26,12 @@
     </form>
   </div>
   >
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js"></script>
   <script type="module">
-    console.log('test')
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+    } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
     const firebaseConfig = {
       apiKey: 'AIzaSyC6TON3zXSqWZcivWVxXvcbfjuLDB04Cic',
       authDomain: 'central-da-solda.firebaseapp.com',
@@ -40,7 +42,7 @@
     };
 
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     const loginForm = document.querySelector('.login');

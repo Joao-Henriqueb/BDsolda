@@ -1,36 +1,30 @@
 var express = require('express');
 var router = express.Router();
+const admin = require('firebase-admin');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }); // Configurando multer para armazenar img  na memória
-const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
+
 const authController = require('../controllers/authController');
 const { v4: uuidv4 } = require('uuid'); // Para gerar nomes únicos para os arquivos
 const { db, bucket } = require('../firebaseConfig');
+const auth = admin.auth();
 
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { token } = req.body;
 
   try {
-    // Tentar fazer login com email e senha
-    const auth = getAuth();
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
-    const token = await userCredential.user.getIdToken();
-    // Retornar o token de autenticação ao cliente
+    const decodedToken = await auth.verifyIdToken(token);
+    const uid = decodedToken.uid;
     res.cookie('authToken', token, {
       httpOnly: true, // Impede o acesso ao cookie via JavaScript
-      secure: true, // Envia o cookie apenas em conexões HTTPS
+      secure: false, // Envia o cookie apenas em conexões HTTPS
       maxAge: 3600000, // 1 hora
     });
-    res.redirect('/novopost');
+    res.status(200).json({ message: 'Login bem-sucedido' });
   } catch (error) {
-    // Retornar erro em caso de falha no login
     console.log(error.message);
-    res.status(401).json({ error: error.message });
+    res.status(401).json({ error: 'Token inválido' });
   }
 });
 /*IMPORTANTE:::ao mudar ordem do formData.append do blob e do 

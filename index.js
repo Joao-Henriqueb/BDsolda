@@ -21,7 +21,7 @@ const serviceAccount = require('./serviceAccountKey.json');
 */
 
 const corsOptions = {
-  origin: 'https://b-dsolda.vercel.app',
+  origin: 'http://b-dsolda.vercel.app',
   methods: 'GET,POST',
   optionsSuccessStatus: 200,
 };

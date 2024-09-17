@@ -69,16 +69,19 @@
 
   <div class="newsletterInicial container">
     <h3>Assine nossa newsletter.</h3>
-    <form action="">
+    <form action="" class="formEmail">
       <label for="Nome">Nome:</label>
-      <input type="Nome">
+      <input type="text" name="nome" required>
       <label for="Email">Email:</label>
-      <input type="Email">
+      <input type="email" name="email" required>
       <div>
-        <input type="radio">
+        <input type="radio" name="concordar">
         <label for="radio">Eu concordo em receber comunicações</label>
       </div>
-      <button>Inscreva-se.</button>
+      <button class="inscrevaSe">Inscreva-se.</button>
+      <span class="aviso"></span>
+
+
     </form>
   </div>
 
@@ -89,8 +92,8 @@
   <footer>
     <p>&copy; 2024 Central da Solda - CDT</p>
   </footer>
+  <script src="/script/capturaEmail.js"></script>
 
-  </script>
 </body>
 
 </html>

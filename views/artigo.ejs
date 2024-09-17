@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artigo - CDT</title>
   <link rel="stylesheet" href="/css/style.css">
+
 </head>
 
 <body>
 
   <header class="header container">
     <div>
-      <a href="./">
+      <a href="/">
         <img width="100px" height="100px" src="/img/logo.png" alt="logo">
       </a>
     </div>
@@ -49,21 +50,27 @@
     </div>
 
     <div class="abaLateral">
+      <!--
       <div class="newsletter">
         <h2>Assine nossa newsletter.</h2>
-        <form action="">
-          <label for="Nome">Nome</label>
-          <input type="Nome">
-          <label for="Email">Email</label>
-          <input type="Email">
+        <form action="" class="formEmail">
+          <label for="Nome">Nome:</label>
+          <input type="text" name="nome" required>
+          <label for="Email">Email:</label>
+          <input type="email" name="email" required>
           <div>
-            <input type="radio">
+            <input type="radio" name="concordar">
             <label for="radio">Eu concordo em receber comunicações</label>
           </div>
-          <button>Inscreva-se</button>
+          <button class="inscrevaSe">Inscreva-se.</button>
+          <span class="aviso"></span>
+
+
         </form>
+        
 
       </div>
+      -->
     </div>
     <!--
     <div class="comentarios">
@@ -86,9 +93,8 @@
 
   <footer>
     <p>&copy; 2024 Central da Solda - CDT</p>
-
-
   </footer>
+
 </body>
 
 </html>

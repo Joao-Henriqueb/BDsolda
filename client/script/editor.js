@@ -1,5 +1,7 @@
 const salvar = document.querySelector('.salvar');
 const contentType = 'image/png';
+const formulario = document.querySelector('.formIntro');
+const aviso = document.querySelector('.aviso');
 
 const quill = new Quill('#editor', {
   modules: {
@@ -15,16 +17,28 @@ const quill = new Quill('#editor', {
 salvar.addEventListener('click', processHtmlContent);
 
 function processHtmlContent() {
-  
   const images = extractImagesFromQuill();
   const form = extractTextandConvertImgBlob(images);
+  if (!form) {
+    aviso.classList.add('ativo');
+    return;
+  }
+  aviso.classList.remove('ativo');
 
   fetch('/api/upload', {
     method: 'POST',
     body: form,
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data);
+      formulario.reset();
+      quill.setContents([]);
+      //informa se foi adicionado com sucesso
+      const sucess = document.querySelector('.sucess');
+      sucess.innerHTML = data.message;
+      sucess.style.visibility = 'visible';
+    })
     .catch((error) => console.error('Error:', error.message));
 }
 
@@ -43,7 +57,6 @@ function extractImagesFromQuill() {
 function extractTextandConvertImgBlob(images) {
   const formData = new FormData();
   const html = quill.getSemanticHTML();
-  const formulario = document.querySelector('.formIntro');
   const imgIntro = document.querySelector('.imgIntro').files[0];
   const textoIntro = formulario.elements['textoIntro'].value;
   const categoryTag = formulario.elements['categoryTag'].value;
@@ -54,20 +67,24 @@ function extractTextandConvertImgBlob(images) {
   const mes = hoje.getMonth() + 1;
   const ano = hoje.getFullYear();
   const dtAtual = dia + '/' + mes + '/' + ano;
-  images.forEach((image, index) => {
-    const blob = base64ToBlob(image); // Convertemos a base64 para blob
-    formData.append(`image_${index}`, blob, `image_${index}.png`); // Nome único
-  });
-  //IMPORTANTE:::ao mudar ordem do formData.append do blob e do img intro ira interferir no final::IMPORTANTE
-  formData.append('categoryTag', categoryTag);
-  formData.append('html', html);
-  formData.append('imgIntro', imgIntro);
-  formData.append('textoIntro', textoIntro);
-  formData.append('autor', autor);
-  formData.append('titulo', titulo);
-  formData.append('data', dtAtual);
 
-  return formData;
+  if (!html || !imgIntro || !textoIntro || !categoryTag || !autor || !titulo) {
+    return '';
+  } else {
+    images.forEach((image, index) => {
+      const blob = base64ToBlob(image); // Convertemos a base64 para blob
+      formData.append(`image_${index}`, blob, `image_${index}.png`); // Nome único
+    });
+    //IMPORTANTE:::ao mudar ordem do formData.append do blob e do img intro ira interferir no final::IMPORTANTE
+    formData.append('categoryTag', categoryTag);
+    formData.append('html', html);
+    formData.append('imgIntro', imgIntro);
+    formData.append('textoIntro', textoIntro);
+    formData.append('autor', autor);
+    formData.append('titulo', titulo);
+    formData.append('data', dtAtual);
+    return formData;
+  }
 }
 function base64ToBlob(base64) {
   const byteCharacters = atob(base64.split(',')[1]);

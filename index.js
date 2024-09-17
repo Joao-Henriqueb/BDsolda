@@ -5,21 +5,6 @@ const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 
-//ambiente dev e esse
-/*
-const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  STORAGE_BUCKET: process.env.STORAGE_BUCKET,
-  MESSAGING_SENDER_ID: process.env.messagingSenderId,
-  appId: process.env.APP_ID,
-};
-firebase.initializeApp(firebaseConfig);
-
-const serviceAccount = require('./serviceAccountKey.json');
-*/
-
 const corsOptions = {
   origin: 'http://b-dsolda.vercel.app',
   methods: 'GET,POST',

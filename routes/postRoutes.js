@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
     const uid = decodedToken.uid;
     res.cookie('authToken', token, {
       httpOnly: true, // Impede o acesso ao cookie via JavaScript
-      secure: false, // Envia o cookie apenas em conexões HTTPS
+      secure: true, // Envia o cookie apenas em conexões HTTPS
       maxAge: 3600000, // 1 hora
     });
     res.status(200).json({ message: 'Login bem-sucedido' });
@@ -106,6 +106,9 @@ router.post(
         .add(itensUpload)
         .then((docRef) => {
           console.log('Documento adicionado com ID:', docRef.id);
+          res
+            .status(200)
+            .json({ message: 'Documento adicionado com ID:' + docRef.id });
         })
         .catch((error) => {
           console.error('Erro ao adicionar documento:', error);
@@ -116,5 +119,18 @@ router.post(
     }
   },
 );
+router.post('/capturaEmail', async (req, res) => {
+  const { dados } = req.body;
+  db.collection('newsletterEmails')
+    .add(dados)
+    .then((docRef) => {
+      console.log('Email Salvo no banco', docRef.id);
+      res.json({ message: 'recebido' });
+    })
+    .catch((error) => {
+      console.log('Erro ao Adicionar documento :', error);
+      res.json({ message: 'Error:', error });
+    });
+});
 
 module.exports = router;

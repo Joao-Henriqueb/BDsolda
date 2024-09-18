@@ -59,6 +59,12 @@
     async function login() {
       const email = loginForm.elements['email'].value;
       const password = loginForm.elements['password'].value;
+      if (!email || !password) {
+        aviso.classList.add('ativo');
+        aviso.innerHTML = 'Preencha todos os campos!';
+        return
+
+      }
       signInWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const token = await userCredential.user.getIdToken();

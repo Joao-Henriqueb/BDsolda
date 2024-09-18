@@ -12,6 +12,7 @@ router.get('/artigos', (req, res) => {
   admin
     .firestore()
     .collection('posts')
+    .orderBy('orderData', 'desc')
     .get()
     .then((snapshot) => {
       const artigos = snapshot.docs.map((doc) => ({
@@ -19,7 +20,7 @@ router.get('/artigos', (req, res) => {
         uid: doc.id,
         data: doc.data().data,
       }));
-
+      console.log(artigos);
       res.render('artigos', { posts: artigos });
     });
 });

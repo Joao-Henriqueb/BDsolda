@@ -52,6 +52,7 @@ router.post(
     let { html, textoIntro, autor, titulo, data, categoryTag } = req.body;
     let linkIntro;
     let intro;
+    let orderData = admin.firestore.Timestamp.now();
 
     if (!req.files) {
       return res.status(400).send('Nenhuma imagem foi recebida.');
@@ -101,6 +102,7 @@ router.post(
         conteudo,
         intro,
         data,
+        orderData,
       };
       db.collection('posts')
         .add(itensUpload)

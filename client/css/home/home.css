@@ -1,0 +1,240 @@
+/* Responsividade do layout */
+.projetos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.projetos img {
+  width: 100%;
+  max-width: 600px;
+}
+
+.projetosAtivos h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.projetosAtivos ul li {
+  margin-bottom: 2rem;
+}
+
+.projetosAtivos p {
+  margin-left: 1rem;
+}
+
+/* Home Bio */
+.homeBio {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.homeBio h1 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Newsletter */
+.newsletterInicial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  text-align: left;
+  max-width: 100%;
+}
+
+.newsletterInicial h3 {
+  font-size: 3rem;
+  margin: auto;
+  width: 20ch;
+}
+
+.newsletterInicial form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-left: 5rem;
+  width: 350px;
+}
+
+/* Campos de input e botões */
+.newsletterInicial input,
+.newsletterInicial button {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+.newsletterInicial input[type="radio"] {
+  width: auto;
+}
+
+.newsletterInicial form div label {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Estilo para o checkbox de "concordar" */
+.newsletterInicial div {
+  display: flex;
+  align-items: center;
+}
+
+.newsletterInicial div label {
+  margin-left: 0.5rem;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 1200px) {
+  .homeBio h1 {
+    font-size: 3.4rem;
+  }
+  .projetosAtivos h2{
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+  .projetosAtivos b{
+    font-size: 2rem;
+  }
+  .projetosAtivos li {
+    font-size: 2rem;
+  }
+  .newsletterInicial {
+    margin-left: 1rem;
+  }
+  .newsletterInicial form{
+    margin: 0;
+    width: 400px;
+  }
+  .newsletterInicial form label{
+    font-size:1.5rem;
+  }
+  .newsletterInicial form div label{
+    font-size: 1.3rem;
+   
+  }
+  .newsletterInicial button{
+    font-size: 1.5rem;
+  }
+  .newsletterInicial input{
+    border-color:black;
+  }
+
+  .projetos {
+    grid-template-columns: 1fr;
+  }
+
+  .projetos img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .newsletterInicial {
+    grid-template-columns: 1fr;
+    text-align: center;
+    align-items: center;
+  }
+  .newsletterInicial h3{
+    width:30ch ;
+  }
+  .newsletterInicial form {
+    width: 750px;
+    margin: auto  ;
+    
+  }
+  .newsletterInicial form label{
+    display: inline-block;
+    width: 100px; 
+    text-align: left;
+    margin-right: 10px;
+  }
+  .newsletterInicial form div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .newsletterInicial form div label {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  
+
+  .newsletterInicial h3 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .header-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .homeBio h1 {
+    font-size: 1.4rem;
+  }
+  .projetosAtivos h2 {
+    font-size: 1.2rem;
+  }
+  
+  .projetosAtivos li {
+    font-size: 1.1rem;
+  }
+  .projetosAtivos b {
+    font-size: 1.1rem;
+  }
+  .newsletterInicial{
+    margin: auto;
+    
+  }
+  .newsletterInicial form{
+    width: 300px;
+    margin: 0;
+  }
+  .newsletterInicial form label{
+    font-size:1.2rem;
+  }
+  
+  .newsletterInicial button{
+    font-size: 1rem;
+  }
+  
+
+  .newsletterInicial h3 {
+    width: 20ch;
+    font-size: 2rem;
+  }
+
+  .projetos img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ajustes para o formulário em telas muito pequenas */
+  .newsletterInicial input,
+  .newsletterInicial button {
+    max-width: 100%;
+  }
+
+  .newsletterInicial form {
+    max-width: 100%;
+    padding: 2rem;
+  }
+  
+
+  .newsletterInicial label[for="radio"] {
+    font-size: 1rem;
+  }
+}

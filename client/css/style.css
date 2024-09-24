@@ -2,18 +2,12 @@
 
 /*Utilidades */
 @import "../css/utilidades/componentes.css";
-@import '../css/utilidades/animacao.css';
 /*Header*/
 @import "../css/global/header.css";
 
 
-
-/*introdução*/
-@import "../css/home/introducao.css";
-
-/*Projetos*/
-@import "../css/home/projetoAtivos.css";
-
+/*Pagina inicial*/
+@import "../css/home/home.css";
 /*purga*/
 @import "../css/purga/purga.css";
 /*artigos*/

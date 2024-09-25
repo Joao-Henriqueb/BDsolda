@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 70% 30%;
   gap: 50px;
+  background-color: white;
 }
 .abaLateral{
   max-width: 100%;
@@ -77,3 +78,72 @@ margin-bottom: 1rem;}
   font-size: 14px;
 }
 
+@media (max-width:1300px) {
+  .newsletter{
+    width: 300px;
+  }
+  
+}
+@media (max-width:1000px) {
+  .posts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .posts h1{
+    font-size: 2.5rem;
+  }
+  .post span{
+    font-size: 1.2rem;
+  }
+  .post h2{
+    font-size: 2rem;
+  }
+  .post p {
+    font-size: 1.4rem;
+  }
+
+  .abaLateral {
+    display: none;
+  }
+  
+}
+@media (max-width:850px) {
+  .post span {
+    font-size: 1.4rem;
+
+  }
+  .post p {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 576px) { 
+  .postsArtigos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .postsArtigos h1{
+    font-size: 1.8rem;
+    margin-bottom: 4rem;
+  }
+  .post{
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 500px rgba(0, 0, 0, 0.3); 
+  }
+  .post span{
+    font-size: 1rem;
+  }
+  .post h2{
+    font-size: 1.5rem;
+  }
+
+  .post p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+
+  }
+
+}
+ 

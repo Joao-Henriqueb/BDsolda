@@ -251,10 +251,15 @@ button#resetBtn:hover {
     font-size: 1.5rem;
     gap: 2rem;
   }
+  .modal{
+    max-width: 100%;
 
+  } 
   .modal .modalTexto {
     width: 90%;
     max-width: 600px;
+    height: max-content;
+    font-size: 1.3em;
   }
 }
 
@@ -291,6 +296,12 @@ button#resetBtn:hover {
   .resultado .resultadoInfo {
     width: 100%;
     max-width:400px;
+  }
+  .modal{
+    width: 500px;
+  }
+  .modal .modalTexto{
+    font-size: 1.7rem;
   }
 }
 
@@ -340,11 +351,22 @@ button#resetBtn:hover {
   }
   .modal{
     width: 100%;
-    height: max-content;
   } 
+  .modal .modalTexto{
+    font-size: 1rem;
+  }
   .resultado .resultadoInfo {
     max-width: 100%;
     padding: 10px;
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal{
+    width: 100%;
+  } 
+  .modal .modalTexto{
+    font-size: 0.9rem;
   }
 }

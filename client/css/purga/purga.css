@@ -41,7 +41,7 @@
 }
 .purgaForm label{
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 .purgaForm input[type="number"],button {
   display: block;
@@ -196,7 +196,12 @@ button#resetBtn:hover {
 
 /* Responsividade para o layout */
 @media (max-width: 1200px) {
+  .introPurga p {
+    font-size: 1.4rem;
+    line-height: 2rem;
   
+
+  }
   .controlePurga {
     grid-template-columns: 1fr;
   }
@@ -208,23 +213,43 @@ button#resetBtn:hover {
   }
 
   .calculadora {
-    width: 100%;
-    max-width: 500px;
+    max-width: 100%;
+    width: 800px;
   }
 
   .purgaForm {
-    width: 100%;
-    max-width: 400px;
+    max-width: 1200px;
+    font-size: 1.5rem;
   }
+  .purgaForm label{
+    margin-bottom: 1rem;
+  }
+  .purgaForm input[type="number"], 
+  .purgaForm button {
+    width: 100%;
+    max-width: 100%;
+    border-color:black;
+    font-size: 1.5rem;
+  }
+  .purgaForm button{
+    margin-top: 1rem;
+  }
+.cronometro .buttons{
+  font-size: 2rem;
+}
 
   .cronoResultado {
-    grid-template-columns: 1fr;
-    text-align: center;
+    grid-template-columns: 1fr 1fr;
+  }
+  .resultado h1 {
+    font-size: 1.8rem;
   }
 
   .resultado .resultadoInfo {
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
+    font-size: 1.5rem;
+    gap: 2rem;
   }
 
   .modal .modalTexto {
@@ -240,29 +265,24 @@ button#resetBtn:hover {
   }
 
   .introPurga p {
-    font-size: 1rem;
-    line-height: 1.4rem;
+    font-size: 2rem;
+    line-height: 3rem;
     text-align: left;
   }
 
   .controlePurga {
-    display: block;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .controlePurga .calculadora{
-    background-color: yellow;
-  }
+
   .controlePurga .calculadora h2 {
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
 
-  .purgaForm input[type="number"], 
-  .purgaForm button {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
+ 
 
   .timer-container {
     width: 100%;
@@ -270,7 +290,7 @@ button#resetBtn:hover {
 
   .resultado .resultadoInfo {
     width: 100%;
-    max-width: 300px;
+    max-width:400px;
   }
 }
 
@@ -283,28 +303,48 @@ button#resetBtn:hover {
   .calculadora {
     max-width: 100%;
   }
+  .controlePurga .calculadora h2 {
+    font-size: 1.5rem;
+  }
+  .calculadora .purgaForm label {
+    font-size: 1.2rem;
+  }
 
   .purgaForm input[type="number"], 
   .purgaForm button {
+    padding: 5px;
     margin-bottom: 10px;
     max-width: 300px;
+    font-size: 1rem;
   }
-
+  .cronoResultado{
+    grid-template-columns: 1fr;
+  }
   .timer-container {
     padding: 10px;
   }
+  .cronometro{
+    order: 2;
+
+  }
+  .buttons{
+    order: 1;
+    font-size: 1rem;
+
+  }
 
   .buttons button {
+    
     padding: 8px 15px;
-    font-size: 0.9em;
+    font-size: 0.5em;
   }
   .modal{
     width: 100%;
     height: max-content;
   } 
- 
   .resultado .resultadoInfo {
     max-width: 100%;
     padding: 10px;
+    font-size: 1rem;
   }
 }

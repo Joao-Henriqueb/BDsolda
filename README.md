@@ -9,3 +9,6 @@ Blog Técnico com Newsletter
 Descrição: Um blog técnico com captura de e-mails para envio de newsletter, focado em dicas rápidas para profissionais da área de soldagem, abordando tópicos como segurança e uso eficiente de ferramentas.
 Tecnologias: JavaScript, Firebase, Node.js.
 Diferenciais: Sistema de newsletter totalmente integrado com Firebase, utilizando autenticação e armazenamento seguro.
+
+site: https://b-dsolda.vercel.app/
+

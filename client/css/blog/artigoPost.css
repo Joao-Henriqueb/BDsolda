@@ -1,7 +1,13 @@
 
+
 .artigo h1{
   text-align: center;
   margin-bottom: 2rem;
+}
+.artigo p {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+
 }
 .content{
   margin-bottom: 2rem;
@@ -55,3 +61,67 @@
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
+
+@media (max-width:1200px) {
+  .postArtigo{
+    padding: 5rem;
+    
+  }
+  .artigo h1 span {
+    font-size: 2rem;
+    color: red;
+  }
+  .artigo p {
+    font-size: 1.5rem;
+  }
+
+  
+}
+
+@media (max-width:850px) {
+  .artigo p {
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.8rem;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .content{
+    width: 350px;
+    margin: auto;
+    padding: 0.5rem;
+
+  }
+  .content .entryMeta {
+    font-size: 0.8rem;
+  }
+  .postArtigo{
+    padding: 0;
+  }
+  .content p {
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+
+}
+@media (max-width: 350px) {
+
+  .content{
+    width: 300px;
+    padding: 1rem;
+
+  }
+  .artigo h1 span {
+    font-size: 1.5rem;
+  }
+
+  .content p {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+
+}
+
+

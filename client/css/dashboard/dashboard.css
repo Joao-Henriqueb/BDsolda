@@ -74,4 +74,110 @@ margin-bottom: 2rem;
   text-transform: uppercase;
 }
 
+@media (max-width:1000px) {
+  .main-content{
+   max-width: 100%;
+   padding: 2rem;
+  
+  }
+  #editor{
+    margin-bottom: 5rem;
+  }
+  .main-content input{
+    border-color:black;
+  }
+  .main-content textarea{
+    border-color:black;
+  }
+  
+}
+@media (max-width:860px){
+  #editor{
+    font-size: 2rem;
+  }
+  .main-content{
+    font-size: 1.5rem;
+  }
+  .main-content input{
+    font-size: 1.2rem;
+    width: 300px;
+  }
+  .main-content textarea{
+    font-size: 1.2rem;
+
+  }
+  .main-content button{
+    font-size: 1.2rem;
+  }
+
+
+}
+@media (max-width:768px) {
+  .main-content form{
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+  }
+  .sidebar li {
+    font-size: 1.5rem;
+  }
+  .sidebar button {
+    font-size: 1.5rem;
+  }
+  
+}
+@media (max-width:500px) {
+  body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .sidebar{
+  position: static;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  .sidebar ul {
+    text-align: left;
+    width: 100%;  
+  }
+  .sidebar ul li {
+    text-align: left;
+  }
+
+  .main-content{
+    margin: 0;
+    font-size: 1rem;
+    padding: 5rem;
+  }
+  .main-content h1 {
+    font-size: 2rem;
+  }
+  #editor {
+    font-size: 1rem;
+    width: 400px;
+  }
+  .main-content input{
+    font-size: 1rem;
+  }
+  .main-content textarea{
+    font-size: 1rem;
+
+  }
+  
+  
+  
+}
+
+@media (max-width:350px) {
+  .main-content{
+    max-width: 320px;
+  }
+  
+}
+
+
 

@@ -310,6 +310,9 @@ button#resetBtn:hover {
     font-size: 1rem;
     line-height: 1.5rem;
   }
+  .controlePurga{
+    max-width: 100%;
+  }
 
   .calculadora {
     max-width: 100%;

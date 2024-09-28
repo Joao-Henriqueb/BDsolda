@@ -91,6 +91,8 @@
 @media (max-width: 576px) {
   .login{
     width: 350px;
+    box-shadow:none;
+
   }
 
   .login label{

@@ -90,8 +90,9 @@
 
 @media (max-width: 576px) {
   .login{
-    width: 350px;
+    max-width: 350px;
     box-shadow:none;
+    background-color: red;
 
   }
 

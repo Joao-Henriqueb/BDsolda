@@ -13,3 +13,39 @@
   flex-wrap: wrap;
   gap: 40px;
 }
+.header-menu li a:hover {
+  text-decoration: underline;
+  
+}
+@media (max-width:1000px) {
+  .header{
+    justify-content: space-between;
+    padding: 2rem 5rem;
+  }
+  .header-menu li {
+    font-size: 1.5rem;
+  }
+
+
+}
+
+
+@media (max-width:565px) {
+  .header{
+    margin-top: 10px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    justify-content: space-between;
+    padding: 0 1rem;
+
+  }
+  .header-menu li {
+    font-size: 1rem;
+    
+  }
+  .header-menu{
+    margin-bottom: 1rem;
+  }
+  
+  
+}

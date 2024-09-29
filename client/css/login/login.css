@@ -1,5 +1,5 @@
 .boxLogin{
-  width: 100%; 
+  max-width: 100vw;
   height: 100vh; 
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@
 }
 @media (max-width:1200px) {
   .login{
-    width: 500px;
+    max-width: 100%;
   }
   .login label{
     font-size: 1.2rem;
@@ -76,6 +76,10 @@
   
 }
 @media (max-width:850px){
+  .boxLogin{
+    max-width: 100%;
+  }
+
   .login label{
     font-size: 1.5rem;
   }
@@ -89,10 +93,19 @@
 }
 
 @media (max-width: 576px) {
-  .login{
+
+  
+  .boxLogin{
+    max-width: 100vw;
+
+  }
+  .login .contentImg img{
+    max-width: 100px;
+  }
+  .boxLogin .login{
     max-width: 100%;
     box-shadow:none;
-
+    padding: 0.5rem;
   }
 
   .login label{
@@ -105,10 +118,18 @@
     font-size: 1rem;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 414px) {
+    .login .contentImg h2{
+      font-size: 2rem;
+    }
+
+    .login .contentImg img{
+      width: 80px;
+    }
     .login{
       width: 300px;
     }
+    
   }
 
 

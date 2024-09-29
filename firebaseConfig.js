@@ -5,8 +5,8 @@ require('dotenv').config();
 /*
 const serviceAccount = require('./serviceAccountKey.json');
 */
-
 //deploy
+
 const serviceAccount = JSON.parse(
   process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON,
 );

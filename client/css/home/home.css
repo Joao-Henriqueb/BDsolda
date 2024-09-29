@@ -1,4 +1,5 @@
 /* Responsividade do layout */
+
 .projetos {
   display: grid;
   grid-template-columns: 1fr 1fr;

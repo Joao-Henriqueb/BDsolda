@@ -135,4 +135,9 @@ router.post('/capturaEmail', async (req, res) => {
     });
 });
 
+router.post('/logout', async (req, res) => {
+  res.clearCookie('authToken');
+  res.redirect('/login');
+});
+
 module.exports = router;

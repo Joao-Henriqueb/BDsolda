@@ -7,9 +7,6 @@
   <title>Admin Panel</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-
-
-
 </head>
 
 <body>
@@ -47,6 +44,45 @@
 
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   <script type="module" src="/script/editor.js"></script>
+
+  <script type="module">
+    const sair = document.querySelector('.sair');
+
+
+
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+    import {
+      getAuth, signOut,
+      signInWithEmailAndPassword,
+    } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+    const firebaseConfig = {
+      apiKey: 'AIzaSyC6TON3zXSqWZcivWVxXvcbfjuLDB04Cic',
+      authDomain: 'central-da-solda.firebaseapp.com',
+      projectId: 'central-da-solda',
+      storageBucket: 'central-da-solda.appspot.com',
+      messagingSenderId: '163621077766',
+      appId: '1:163621077766:web:47e655549c2269e3531487',
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    sair.addEventListener('click', async () => {
+      await auth.signOut();
+      fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'include', // Inclui os cookies na requisição
+      }).then((res) => {
+        console.log(res)
+        if (res.ok === true) {
+          console.log('eai')
+          window.location.href = '/login'
+        }
+
+      }).catch((error) => {
+        console.error('Erro ao deslogar:', error);
+      })
+    });
+
+  </script>
 
 </body>
 

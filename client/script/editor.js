@@ -2,6 +2,7 @@ const salvar = document.querySelector('.salvar');
 const contentType = 'image/png';
 const formulario = document.querySelector('.formIntro');
 const aviso = document.querySelector('.aviso');
+const sair = document.querySelector('.sair');
 
 const quill = new Quill('#editor', {
   modules: {

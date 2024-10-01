@@ -73,6 +73,9 @@ margin-bottom: 2rem;
   color: green;
   text-transform: uppercase;
 }
+.sair:hover{
+  cursor: pointer;
+}
 
 @media (max-width:1000px) {
   .main-content{
